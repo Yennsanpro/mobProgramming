@@ -11,44 +11,44 @@ import One from '../Pages/One/One'
 
 
 
-export const router = createBrowserRouter ([
+export const router = createBrowserRouter([
     {
         path: '/',
-        element: <MainLayout/>,
+        element: <MainLayout />,
         children: [
-             {
+            {
                 path: '',
-                element: <Landing/>,
-                loader: () => {
-                    if(!localStorage.getItem('token')) {
-                        return null
-                    } else{
-                        return redirect ('/home') // si tienes token te lleva al home
-                    }
-                }
+                element: <Landing />
             },
-            
+
             {
                 path: 'signup',
-                element: <Signup/>
+                element: <Signup />
             },
             {
                 path: 'login',
-                element: <Login/>
-            }, 
+                element: <Login />
+            },
             {
                 path: 'home',
-                element: <Home/>
-            }, 
+                element: <Home />,
+                loader: () => {
+                    if (localStorage.getItem('token')) {
+                        return null
+                    } else {
+                        return redirect('/') // si tienes token te lleva al home
+                    }
+                }
+            },
             {
                 path: 'all',
-                element: <All/>
-            }, 
+                element: <All />
+            },
             {
                 path: 'one',
-                element: <One/>
-            }, 
-            
+                element: <One />
+            },
+
         ]
     }
 ])

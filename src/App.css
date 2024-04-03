@@ -11,5 +11,7 @@ body{
 .main{
   width:100vw;
   display: grid;
+  align-content: center;
+  justify-content: center;
 }
 

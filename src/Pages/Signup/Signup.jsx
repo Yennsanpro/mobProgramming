@@ -1,6 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardHeader, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { signup } from '../../services/authServices'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
     const [firstname, setFirtsname] = useState('')
@@ -9,10 +10,13 @@ const Signup = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate()
+
 const handleSignup = async () => {
     const res =await signup ({email, name: {firstname, lastname}, username, password})
     localStorage.seItem('token', res.token)
-    localStorage.seItem('role', res.token)
+    localStorage.seItem('role', res.role)
+    navigate('/home')
 }
 
 
